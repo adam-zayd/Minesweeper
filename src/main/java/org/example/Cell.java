@@ -43,6 +43,7 @@ public class Cell {
     }
 
     public void setNeighboringMines(int neighboringMines) {
+
         this.surroundingMines = neighboringMines;
     }
 
