@@ -65,16 +65,51 @@ public class Grid {
                     }
                     board[i][j].setNeighboringMines(count);
                 }
-
             }
         }
     }
 
-public boolean revealCell(int row, int col) {
+public int revealCell(int row, int col) {  //return 0 on success, return 1 on mine, return anything else on error (-1: Flagged, 2: invalid entry, 3: already revealed)
+    if (!(row >= 0 && row < rows && col >= 0 && col < cols)) {
+        return 2;
+    }
+    if (board[row][col].getRevealed()){
+        return 3;
+    }
+    if (board[row][col].getFlagged()) {
+        return -1;
+    }
+
+    board[row][col].reveal();
+
+    if (board[row][col].getMine()) {
+        return 1;
+    }
+
+    if (board[row][col].getSurroundingMines() == 0) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int newRow = row + i;
+                int newCol = col + j;
+
+                if ((newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) && !board[newRow][newCol].getRevealed() && !board[newRow][newCol].getMine()) {
+                    revealCell(newRow, newCol);
+                }
+            }
         }
+    }
+
+    return 0;
+    }
+
+
+
 
     public void flagCell(int row, int col) {
+        if ((row >= 0 && row < rows && col >= 0 && col < cols) && !board[row][col].getRevealed()) {
+            board[row][col].flag();
         }
+    }
 
 
     public boolean getFirstMove() {
@@ -83,6 +118,19 @@ public boolean revealCell(int row, int col) {
 
     public void display() {   //display Grid
 
+        System.out.print("\n");
+        for (int col = 0; col < cols; col++) {
+            System.out.print(col + " ");
         }
+        System.out.println();
 
-}
+        for (int row = 0; row < rows; row++) {
+            System.out.print(row + ": ");
+            for (int col = 0; col < cols; col++) {
+                System.out.print(board[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+        }
