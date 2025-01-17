@@ -43,7 +43,16 @@ public class Grid {
             int row = random.nextInt(rows);
             int col = random.nextInt(cols);
 
-            if ((row == initialRow && col == initialCol) ||  board[row][col].getMine()) {
+            if (row == initialRow && col == initialCol
+               ||row == initialRow-1 && col == initialCol-1
+               ||row == initialRow && col == initialCol-1
+               ||row == initialRow-1 && col == initialCol
+               ||row == initialRow-1 && col == initialCol+1
+               ||row == initialRow+1 && col == initialCol-1
+               ||row == initialRow+1 && col == initialCol
+               ||row == initialRow && col == initialCol+1
+               ||row == initialRow+1 && col == initialCol+1
+               ||board[row][col].getMine()) {
                 i--;
                 continue;
             }

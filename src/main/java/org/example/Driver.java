@@ -65,11 +65,11 @@ public class Driver {
 
                         case -1:
                             System.out.println("YOU HAVE FLAGGED THAT POINT. If you want to reveal it, unflag using 'f' as your action next time");
-                            continue;
+                            break;
 
                         case 0:
                             //successful reveal
-                            continue;
+                            break;
 
                         case 1:
                             board.display();
@@ -78,15 +78,15 @@ public class Driver {
 
                         case 2:
                             System.out.println("YOU ENTERED AN INVALID COORDINATE. Your row input should be between 0 and " + board.getRows() + ". Your column input should be between 0 and " + board.getCols());
-                            continue;
+                            break;
 
                         case 3:
                             System.out.println("YOU HAVE ALREADY REVEALED THAT POINT. Pick an unrevealed point next time. ");
-                            continue;
+                            break;
 
                         default:
                             System.out.println("REVEALCELL has returned ERRORRRRRRRRRRRRRRRRRRRRR. Something unexpected. ");
-                            continue;
+                            break;
                     }
                 } else {   //action == 'f'
                     board.flagCell(row, col);
