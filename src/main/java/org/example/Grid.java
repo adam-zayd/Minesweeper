@@ -22,6 +22,14 @@ public class Grid {
         }
     }
 
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
+    }
+
     public void firstMoveSetup(int initialRow, int initialCol) {    //first move set to false, mines placed except for first move
         this.firstMove= false;
         initMines(initialRow, initialCol);
@@ -115,6 +123,21 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
     public boolean getFirstMove() {
     return firstMove;
     }
+
+//    private boolean gameWon(Grid board){
+//        for (int i=0; i<board.getRows(); i++){
+//            for (int j=0; j<board.getRows(); j++){
+//                if (board[i][j].getMine) {
+//                    continue;
+//                }
+//                else{
+//
+//
+//                }
+//
+//            }
+//        }
+//    }
 
     public void display() {   //display Grid
 

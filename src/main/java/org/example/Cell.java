@@ -47,26 +47,26 @@ public class Cell {
         this.surroundingMines = neighboringMines;
     }
 
-//    @Override
-//    public String toString() {
-//        if (getRevealed) {
-//            if (getMine){
-//                return "*";
-//            }
-//            else {
-//                String ret= String.valueOf(surroundingMines)
-//                return "[" + ret + "]";
-//            }
-//        }
-//        else{
-//            if (getFlagged){
-//                return "|>";
-//            }
-//            else{
-//                return "[?]";
-//            }
-//
-//        }
-//    }
+    @Override
+    public String toString() {
+        if (getRevealed) {
+            if (getMine){
+                return "*";
+            }
+            else {
+                String ret= String.valueOf(surroundingMines);
+                return "[" + ret + "]";
+            }
+        }
+        else{
+            if (getFlagged){
+                return "|>";
+            }
+            else{
+                return "[?]";
+            }
+
+        }
+    }
 
 }
