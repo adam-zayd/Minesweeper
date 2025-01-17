@@ -43,7 +43,7 @@ public class Grid {
             int row = random.nextInt(rows);
             int col = random.nextInt(cols);
 
-            if ((row == initialRow && col == initialCol) || board[row][col].getMine()) {
+            if ((row == initialRow && col == initialCol) ||  board[row][col].getMine()) {
                 i--;
                 continue;
             }
@@ -110,9 +110,6 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
     return 0;
     }
 
-
-
-
     public void flagCell(int row, int col) {
         if ((row >= 0 && row < rows && col >= 0 && col < cols) && !board[row][col].getRevealed()) {
             board[row][col].flag();
@@ -124,20 +121,21 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
     return firstMove;
     }
 
-//    private boolean gameWon(Grid board){
-//        for (int i=0; i<board.getRows(); i++){
-//            for (int j=0; j<board.getRows(); j++){
-//                if (board[i][j].getMine) {
-//                    continue;
-//                }
-//                else{
-//
-//
-//                }
-//
-//            }
-//        }
-//    }
+    public boolean gameWon(){
+        for (int i=0; i<rows; i++){
+            for (int j=0; j<cols; j++){
+                if (board[i][j].getMine()) {
+                    continue;
+                }
+                else{
+                    if (!board[i][j].getRevealed()){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
     public void display() {   //display Grid
 

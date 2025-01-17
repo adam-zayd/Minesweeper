@@ -27,32 +27,28 @@ public class Driver {
     }
 
     private static char getValidAction(Scanner reader) {
-
-        char input = 't';
+        char input;
         while (true) {
-            System.out.print("Enter the action you want to take. Use 'f' for flag, 'r' for reveal: ");
-            String userInput = reader.nextLine().trim();
+            System.out.println("Enter the action you want to take. Use 'f' for flag, 'r' for reveal: ");
+            String userInput = reader.next().trim();
 
             if (userInput.length() == 1) {
                 input = userInput.charAt(0);
 
                 if (input == 'f' || input == 'F' || input == 'r' || input == 'R') {
-                    return Character.toLowerCase(input); // Return in lowercase
+                    return Character.toLowerCase(input);
                 }
             }
-
-            // If invalid, prompt the user again
-            System.out.println("Invalid input. Please enter only 'f' or 'r', for flag or reveal, respectively: ");
+            System.out.println("\nInvalid input. Please enter only 'f' or 'r', for flag or reveal, respectively: ");
         }
     }
-    
+
 
     public void start () {
 
             System.out.println("Welcome to Minesweeper!\n");
             while (true) {
                 board.display();
-                System.out.print("Enter which coordinate you want to take an action on (separate row and column : ");
                 int row = getValidInt(scanner, "Enter the row you want to take an action on: ", "Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
                 int col = getValidInt(scanner, "Enter the column you want to take an action on: ", "Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
 
@@ -69,11 +65,11 @@ public class Driver {
 
                         case -1:
                             System.out.println("YOU HAVE FLAGGED THAT POINT. If you want to reveal it, unflag using 'f' as your action next time");
-                            break;
+                            continue;
 
                         case 0:
                             //successful reveal
-                            break;
+                            continue;
 
                         case 1:
                             board.display();
@@ -82,29 +78,25 @@ public class Driver {
 
                         case 2:
                             System.out.println("YOU ENTERED AN INVALID COORDINATE. Your row input should be between 0 and " + board.getRows() + ". Your column input should be between 0 and " + board.getCols());
-                            break;
+                            continue;
 
                         case 3:
                             System.out.println("YOU HAVE ALREADY REVEALED THAT POINT. Pick an unrevealed point next time. ");
-                            break;
+                            continue;
 
                         default:
                             System.out.println("REVEALCELL has returned ERRORRRRRRRRRRRRRRRRRRRRR. Something unexpected. ");
-                            break;
+                            continue;
                     }
                 } else {   //action == 'f'
                     board.flagCell(row, col);
                 }
 
-
-                if (game is won){            //FIX ME - implement game won checker
+                if (board.gameWon()){            //FIX ME - implement game won checker
                     board.display();
                     System.out.println("Congratulations! You've won the game! Try it with a larger grid/more mines next time.");
-                    break;
-
+                    System.exit(0);
                     }
-
                 }
             }
         }
-
