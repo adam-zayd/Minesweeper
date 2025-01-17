@@ -162,5 +162,4 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
             System.out.println();
         }
     }
-
         }
