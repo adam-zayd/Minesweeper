@@ -38,23 +38,24 @@ public class Grid{
 
     private void initMines(int initialRow, int initialCol){  //randomly place mines at start of game, except in given coords
         Random random= new Random();
-        for(int i = 0; i < totalMines ;i ++){
+        int i = 0;
+        while(i < totalMines){
             int row = random.nextInt(rows);
             int col = random.nextInt(cols);
             if(row == initialRow && col == initialCol
-               ||row == initialRow-1 && col == initialCol-1
-               ||row == initialRow && col == initialCol-1
-               ||row == initialRow-1 && col == initialCol
-               ||row == initialRow-1 && col == initialCol+1
-               ||row == initialRow+1 && col == initialCol-1
-               ||row == initialRow+1 && col == initialCol
-               ||row == initialRow && col == initialCol+1
-               ||row == initialRow+1 && col == initialCol+1
-               ||board[row][col].getMine()){
-                i --;
+                    ||row == initialRow-1 && col == initialCol-1
+                    ||row == initialRow && col == initialCol-1
+                    ||row == initialRow-1 && col == initialCol
+                    ||row == initialRow-1 && col == initialCol+1
+                    ||row == initialRow+1 && col == initialCol-1
+                    ||row == initialRow+1 && col == initialCol
+                    ||row == initialRow && col == initialCol+1
+                    ||row == initialRow+1 && col == initialCol+1
+                    ||board[row][col].getMine()) {
                 continue;
             }
             board[row][col].setMine();
+            i ++;
         }
     }
 
@@ -68,7 +69,7 @@ public class Grid{
                             int newRow = i + x;
                             int newCol = j + y;
                             if((newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) && board[newRow][newCol].getMine()){
-                                count++;
+                                count ++;
                             }
                         }
                     }
