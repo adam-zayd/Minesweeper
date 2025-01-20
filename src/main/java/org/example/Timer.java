@@ -1,15 +1,14 @@
 package org.example;
 
-public class Timer {
+public class Timer{
     private long startTime;
 
-    public void start() {
+    public void start(){
         this.startTime = System.currentTimeMillis();
     }
-    public int getTimeInS() {
+
+    public int getTimeInS(){
         long currentTime = System.currentTimeMillis();
-        return (int) Math.ceil((currentTime - startTime) / 1000.0);
+        return(int) Math.ceil((currentTime - startTime) / 1000.0);
     }
-
-
 }

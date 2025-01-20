@@ -6,67 +6,64 @@ public class Cell {
     private boolean getFlagged;     //Has been flagged
     private int surroundingMines;  //number of mines in surrounding
 
-    public Cell() {   //constructor
+    public Cell(){   //constructor
         this.getMine = false;
         this.getRevealed = false;
         this.getFlagged = false;
         this.surroundingMines = 0;
     }
 
-
-    public boolean getMine() {
+    public boolean getMine(){
         return getMine;
     }
 
-    public void setMine() {
+    public void setMine(){
         this.getMine = true;
     }
 
-    public boolean getRevealed() {
+    public boolean getRevealed(){
         return getRevealed;
     }
 
-    public void reveal() {
+    public void reveal(){
         this.getRevealed = true;
     }
 
-    public boolean getFlagged() {
+    public boolean getFlagged(){
         return getFlagged;
     }
 
-    public void flag() {
+    public void flag(){
         this.getFlagged = !this.getFlagged;
     }
 
-    public int getSurroundingMines() {
+    public int getSurroundingMines(){
         return surroundingMines;
     }
 
-    public void setNeighboringMines(int neighboringMines) {
+    public void setNeighboringMines(int neighboringMines){
 
         this.surroundingMines = neighboringMines;
     }
 
     @Override
-    public String toString() {
-        if (getRevealed) {
+    public String toString(){
+        if(getRevealed){
             if (getMine){
                 return " * ";
             }
-            else {
+            else{
                 String ret= String.valueOf(surroundingMines);
                 return "[" + ret + "]";
             }
         }
         else{
-            if (getFlagged){
+            if(getFlagged){
                 return "|> ";
             }
             else{
                 return "[?]";
             }
-
         }
     }
-
 }
