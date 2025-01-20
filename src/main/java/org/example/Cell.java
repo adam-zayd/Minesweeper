@@ -51,7 +51,7 @@ public class Cell {
     public String toString() {
         if (getRevealed) {
             if (getMine){
-                return "*";
+                return " * ";
             }
             else {
                 String ret= String.valueOf(surroundingMines);
@@ -60,7 +60,7 @@ public class Cell {
         }
         else{
             if (getFlagged){
-                return "|>";
+                return "|> ";
             }
             else{
                 return "[?]";

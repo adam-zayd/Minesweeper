@@ -2,8 +2,6 @@ package org.example;
 
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Minesweeper {
 
     private static int getValidInt(Scanner reader, String outp) {
@@ -17,14 +15,14 @@ public class Minesweeper {
             } else {
                 reader.next();
             }
-            System.out.println("Your entry is invalid. \nMake sure your input is 3 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
+            System.out.println("Your entry is invalid. \nMake sure your rows/columns are 4 or greater.\nMake sure it is only a number. \nMake sure it has no decimal place.");
         }
     }
 
-    private static int getValidInt(Scanner reader, String outp, int rows, int cols) {
+    private static int getValidInt(Scanner reader, int rows, int cols) {
         int maxMines= (rows*cols)-9;
         while (true) {
-            System.out.println(outp);
+            System.out.println("Enter how many mines you want: ");
             if (reader.hasNextInt()) {
                 int value = reader.nextInt();
                 if (value<=maxMines) {
@@ -41,7 +39,7 @@ public class Minesweeper {
         Scanner reader = new Scanner(System.in);
         int rows= getValidInt(reader, "Enter how many rows you want: ");
         int cols= getValidInt(reader, "Enter how many columns you want: ");
-        int mines= getValidInt(reader, "Enter how many mines you want: ",rows, cols);
+        int mines= getValidInt(reader, rows, cols);
 
         Driver game = new Driver(rows, cols, mines); // Grid size: 8x8, 10 mines
         game.start();

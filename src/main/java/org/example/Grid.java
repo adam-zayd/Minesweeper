@@ -109,7 +109,7 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
                 int newRow = row + i;
                 int newCol = col + j;
 
-                if ((newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) && !board[newRow][newCol].getRevealed() && !board[newRow][newCol].getMine()) {
+                if ((newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) && !board[newRow][newCol].getRevealed() && !board[newRow][newCol].getMine() && !board[newRow][newCol].getFlagged()) {
                     revealCell(newRow, newCol);
                 }
             }
@@ -149,13 +149,14 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
     public void display() {   //display Grid
 
         System.out.print("\n");
+        System.out.print("    ");
         for (int col = 0; col < cols; col++) {
-            System.out.print(col + " ");
+            System.out.print(col + "   ");
         }
         System.out.println();
 
         for (int row = 0; row < rows; row++) {
-            System.out.print(row + ": ");
+            System.out.print(row + "  ");
             for (int col = 0; col < cols; col++) {
                 System.out.print(board[row][col] + " ");
             }

@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Driver {
     private final Grid board;
     private final Scanner scanner;
+    //private final Timer timer;
 
     public Driver(int rows, int cols, int mines) {
         this.board = new Grid(rows, cols, mines);
         this.scanner = new Scanner(System.in);
     }
 
-    private static int getValidInt(Scanner reader, String outp, String err) {
+    private static int getValidInt(Scanner reader, String outp) {
         while (true) {
             System.out.println(outp);
             if (reader.hasNextInt()) {
@@ -22,7 +23,7 @@ public class Driver {
             } else {
                 reader.next();
             }
-            System.out.println(err);
+            System.out.println("Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
         }
     }
 
@@ -47,21 +48,26 @@ public class Driver {
     public void start () {
 
             System.out.println("Welcome to Minesweeper!\n");
+            long startTime=0;
+            long middleTime;
+            long endTime;
             while (true) {
                 board.display();
-                int row = getValidInt(scanner, "Enter the row you want to take an action on: ", "Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
-                int col = getValidInt(scanner, "Enter the column you want to take an action on: ", "Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
+                int col = getValidInt(scanner, "Enter the column you want to take an action on: ");
+                int row = getValidInt(scanner, "Enter the row you want to take an action on: ");
 
                 char action = getValidAction(scanner);
 
-                if (board.getFirstMove()) {
-                    board.firstMoveSetup(row, col);
-                }
-
                 if (action == 'r') {
-                    int outcome= board.revealCell(row, col);
+                    if (board.getFirstMove()) {
+                        board.firstMoveSetup(row, col);
+                        System.out.println("The timer has begun!!!");
+                        startTime = System.currentTimeMillis();
+                    }
+
+                    int outcome = board.revealCell(row, col);
                     //return 0 on success, return 1 on mine, return anything else on error (-1: Flagged, 2: invalid entry, 3: already revealed)
-                    switch(outcome){
+                    switch (outcome) {
 
                         case -1:
                             System.out.println("YOU HAVE FLAGGED THAT POINT. If you want to reveal it, unflag using 'f' as your action next time");
@@ -74,6 +80,9 @@ public class Driver {
                         case 1:
                             board.display();
                             System.out.println("YOU HIT A MINE! Better luck next time");
+                            endTime = System.currentTimeMillis();
+                            int elapsedTimeInSeconds = (int) Math.ceil((endTime - startTime) / 1000.0);
+                            System.out.println("Total game time: " + elapsedTimeInSeconds + " seconds");
                             System.exit(0);
 
                         case 2:
@@ -92,11 +101,18 @@ public class Driver {
                     board.flagCell(row, col);
                 }
 
-                if (board.gameWon()){            //FIX ME - implement game won checker
+                if (board.gameWon()) {            //FIX ME - implement game won checker
                     board.display();
                     System.out.println("Congratulations! You've won the game! Try it with a larger grid/more mines next time.");
+                    endTime = System.currentTimeMillis();
+
+                    int elapsedTimeInSeconds = (int) Math.ceil((endTime - startTime) / 1000.0);
+                    System.out.println("Total game time: " + elapsedTimeInSeconds + " seconds");
                     System.exit(0);
-                    }
                 }
+                middleTime = System.currentTimeMillis();
+                int elapsedTimeInSeconds = (int) Math.ceil((middleTime - startTime) / 1000.0);
+                System.out.println("Game time so far: " + elapsedTimeInSeconds + " seconds");
+            }
             }
         }
