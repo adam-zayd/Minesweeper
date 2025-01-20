@@ -48,6 +48,7 @@ public class Driver {
                             board.display();
                             System.out.println("YOU HIT A MINE! Better luck next time");
                             System.out.println("Total game time: " + timer.getTimeInS() + " seconds");
+                            userInput.close();
                             System.exit(0);
 
                         case 2:
@@ -70,6 +71,7 @@ public class Driver {
                     board.display();
                     System.out.println("Congratulations! You've won the game! Try it with a larger grid/more mines next time.");
                     System.out.println("Final game time: " + timer.getTimeInS() + " seconds");
+                    userInput.close();
                     System.exit(0);
                 }
                 if (!board.getFirstMove()){

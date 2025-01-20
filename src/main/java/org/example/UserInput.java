@@ -9,6 +9,10 @@ public class UserInput {
         this.scanner = new Scanner(System.in);
     }
 
+    public void close(){
+        scanner.close();
+    }
+
     public static int getValidCoord(String outp) {
         while (true) {
             System.out.println(outp);
