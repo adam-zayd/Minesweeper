@@ -61,10 +61,7 @@ public class Grid{
     private void calculateAllSurroundingMines(){//for each cell, count surrounding mines
         for(int i = 0; i < rows; i ++){
             for(int j = 0; j < cols; j ++){
-                if(board[i][j].getMine()){
-                    continue;
-                }
-                else{
+                if(!board[i][j].getMine()){
                     int count = 0;
                     for (int x = -1; x <= 1; x ++){
                         for (int y = -1; y <= 1; y ++){
@@ -136,10 +133,7 @@ public class Grid{
     public boolean gameWon(){
         for(int i = 0; i < rows; i ++){
             for(int j = 0; j < cols; j ++){
-                if(board[i][j].getMine()){
-                    continue;
-                }
-                else{
+                if(!board[i][j].getMine()){
                     if (!board[i][j].getRevealed()){
                         return false;
                     }

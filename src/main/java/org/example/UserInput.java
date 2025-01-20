@@ -6,7 +6,7 @@ public class UserInput{
     private static Scanner scanner;
 
     public UserInput(){
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     public void close(){
