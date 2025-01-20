@@ -9,5 +9,5 @@ public class Minesweeper{
         int mines = userInput.getValidInt(rows, cols);
         Driver game = new Driver(rows, cols, mines, userInput); // Grid size: 8x8, 10 mines
         game.start();
-        }
     }
+}

@@ -16,9 +16,9 @@ public class UserInput{
     public static int getValidCoord(String outp){
         while(true){
             System.out.println(outp);
-            if(scanner.hasNextInt()) {
+            if(scanner.hasNextInt()){
                 int value = scanner.nextInt();
-                if(value>=0) {
+                if(value >= 0){
                     return value;
                 }
             } else{
@@ -33,7 +33,7 @@ public class UserInput{
             System.out.println(outp);
             if(scanner.hasNextInt()){
                 int value = scanner.nextInt();
-                if(value>=4){
+                if(value >= 4){
                     return value;
                 }
             } else{
@@ -44,7 +44,7 @@ public class UserInput{
     }
 
     public static int getValidInt(int rows, int cols){
-        int maxMines = (rows*cols)-9;
+        int maxMines = (rows * cols) - 9;
         while(true){
             System.out.println("Enter how many mines you want (recommended - 10): ");
             if(scanner.hasNextInt()){

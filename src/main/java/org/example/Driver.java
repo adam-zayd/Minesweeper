@@ -66,5 +66,5 @@ public class Driver{
                     System.out.println("Game time so far: " + timer.getTimeInS() + " seconds");
                 }
             }
-            }
-        }
+    }
+}

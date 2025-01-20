@@ -53,7 +53,7 @@ public class Cell {
                 return " * ";
             }
             else{
-                String ret= String.valueOf(surroundingMines);
+                String ret = String.valueOf(surroundingMines);
                 return "[" + ret + "]";
             }
         }
