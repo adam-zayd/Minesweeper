@@ -86,6 +86,18 @@ public class Grid {
         }
     }
 
+public boolean firstMoveValidation(int row, int col) {
+    if (!(row < rows && col < cols)) {
+        System.out.println("YOU ENTERED AN INVALID COORDINATE.");
+        return false;
+    } else if (board[row][col].getFlagged()) {
+        System.out.println("YOU HAVE FLAGGED THAT POINT. If you want to reveal it, unflag using 'f' as your action next time.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 public int revealCell(int row, int col) {  //return 0 on success, return 1 on mine, return anything else on error (-1: Flagged, 2: invalid entry, 3: already revealed)
     if (!(row >= 0 && row < rows && col >= 0 && col < cols)) {
         return 2;
@@ -163,4 +175,5 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
             System.out.println();
         }
     }
+
         }
