@@ -1,48 +1,14 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class Driver {
     private final Grid board;
-    private final Scanner scanner;
     private final Timer timer;
+    private final UserInput userInput;
 
-    public Driver(int rows, int cols, int mines) {
+    public Driver(int rows, int cols, int mines, UserInput userInput) {
         this.board = new Grid(rows, cols, mines);
-        this.scanner = new Scanner(System.in);
         this.timer = new Timer();
-    }
-
-    private static int getValidInt(Scanner reader, String outp) {
-        while (true) {
-            System.out.println(outp);
-            if (reader.hasNextInt()) {
-                int value = reader.nextInt();
-                if (value>=0) {
-                    return value;
-                }
-            } else {
-                reader.next();
-            }
-            System.out.println("Your entry is invalid. \nMake sure your input is 0 or greater. \nMake sure it is only a number. \nMake sure it has no decimal place.");
-        }
-    }
-
-    private static char getValidAction(Scanner reader) {
-        char input;
-        while (true) {
-            System.out.println("Enter the action you want to take. Use 'f' for flag, 'r' for reveal: ");
-            String userInput = reader.next().trim();
-
-            if (userInput.length() == 1) {
-                input = userInput.charAt(0);
-
-                if (input == 'f' || input == 'F' || input == 'r' || input == 'R') {
-                    return Character.toLowerCase(input);
-                }
-            }
-            System.out.println("\nInvalid input. Please enter only 'f' or 'r', for flag or reveal, respectively: ");
-        }
+        this.userInput= userInput;
     }
 
 
@@ -51,10 +17,10 @@ public class Driver {
             System.out.println("Welcome to Minesweeper!\n");
             while (true) {
                 board.display();
-                int col = getValidInt(scanner, "Enter the column you want to take an action on: ");
-                int row = getValidInt(scanner, "Enter the row you want to take an action on: ");
+                int col = userInput.getValidCoord("Enter the column you want to take an action on: ");
+                int row = userInput.getValidCoord("Enter the row you want to take an action on: ");
 
-                char action = getValidAction(scanner);
+                char action = userInput.getValidAction();
 
                 if (action == 'r') {
                     if (board.getFirstMove()) {

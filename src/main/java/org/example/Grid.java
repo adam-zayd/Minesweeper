@@ -132,8 +132,12 @@ public int revealCell(int row, int col) {  //return 0 on success, return 1 on mi
     }
 
     public void flagCell(int row, int col) {
+
         if ((row >= 0 && row < rows && col >= 0 && col < cols) && !board[row][col].getRevealed()) {
             board[row][col].flag();
+        }
+        else{
+            System.out.println("You have entered an invalid coordinate or it has already been revealed.");
         }
     }
 
