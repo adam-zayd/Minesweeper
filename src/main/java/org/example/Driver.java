@@ -15,9 +15,9 @@ public class Driver{
             System.out.println("Welcome to Minesweeper!\n");
             while(true){
                 board.display();
-                int col = userInput.getValidCoord("Enter the column you want to take an action on: ");
-                int row = userInput.getValidCoord("Enter the row you want to take an action on: ");
-                char action = userInput.getValidAction();
+                int col = UserInput.getValidCoord("Enter the column you want to take an action on: ");
+                int row = UserInput.getValidCoord("Enter the row you want to take an action on: ");
+                char action = UserInput.getValidAction();
                 if(action == 'r'){
                     if(board.getFirstMove()){
                         if(!board.firstMoveValidation(row,col)){
